@@ -1,0 +1,21 @@
+{
+    "name": "tolacika/oktatasi-hivatal-hw",
+    "type": "project",
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tolacika\\OktatasiHivatalHw\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tolacika",
+            "email": "1866861+tolacika@users.noreply.github.com"
+        }
+    ]
+}

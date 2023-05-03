@@ -92,3 +92,11 @@ fájlban.
 - Clean Code (Robert C. Martin) elveinek alkalmazása
 
 ## Megoldás
+
+Tested on: PHP 7.4.33
+
+A pontszámítás parancssorból futtatható a következő paranccsal:
+~~~bash
+php src/index.php
+~~~
+
