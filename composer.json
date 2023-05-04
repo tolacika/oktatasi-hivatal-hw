@@ -12,10 +12,23 @@
             "Tolacika\\OktatasiHivatalHw\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tolacika\\OktatasiHivatalHw\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Tolacika",
             "email": "1866861+tolacika@users.noreply.github.com"
         }
-    ]
+    ],
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit --debug"
+        ]
+    },
+    "config": {
+        "phpunit": "phpunit.xml"
+    }
 }

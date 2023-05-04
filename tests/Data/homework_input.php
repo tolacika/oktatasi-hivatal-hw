@@ -1,7 +1,10 @@
 <?php
 
+$exampleData = [];
+
 // output: 470 (370 alappont + 100 többletpont)
-$exampleData = [
+$exampleData['success1'] = [
+    'output' => 470,
     'valasztott-szak' => [
         'egyetem' => 'ELTE',
         'kar' => 'IK',
@@ -49,7 +52,8 @@ $exampleData = [
 ];
 
 // output: 476 (376 alappont + 100 többletpont)
-$exampleData = [
+$exampleData['success2'] = [
+    'output' => 476,
     'valasztott-szak' => [
         'egyetem' => 'ELTE',
         'kar' => 'IK',
@@ -102,7 +106,7 @@ $exampleData = [
 ];
 
 // output: hiba, nem lehetséges a pontszámítás a kötelező érettségi tárgyak hiánya miatt
-$exampleData2 = [
+$exampleData['fail_missing_required'] = [
     'valasztott-szak' => [
         'egyetem' => 'ELTE',
         'kar' => 'IK',
@@ -140,7 +144,7 @@ $exampleData2 = [
 ];
 
 // output: hiba, nem lehetséges a pontszámítás a magyar nyelv és irodalom tárgyból elért 20% alatti eredmény miatt
-$exampleData3 = [
+$exampleData['fail_low_result'] = [
     'valasztott-szak' => [
         'egyetem' => 'ELTE',
         'kar' => 'IK',
