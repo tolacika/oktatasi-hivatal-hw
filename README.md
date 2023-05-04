@@ -100,3 +100,18 @@ A pontszámítás parancssorból futtatható a következő paranccsal:
 php src/index.php
 ~~~
 
+A teszteket pedig az alábbi paranccsal lehet futtatni:
+
+~~~bash
+composer test
+~~~
+vagy
+~~~bash
+./vendor/bin/phpunit
+~~~
+
+### Néhány plusz infó
+
+- A megoldásom feltételezi, hogy a `tobbletpontok` mezőben nem érkezhet más mint 'Nyelvvizsga' (IRL több extra pont lehetőség is van)
+- Az input adatokhoz felvettem adatként az elvárt pontszámot, hogy a teszteket lehessen dinamikusan is használni
+- Továbbá hozzáadtam egy plusz teszt esetet, melyben a nyelvvizsgák duplikációját teszteli le. (angol B2 és C1)

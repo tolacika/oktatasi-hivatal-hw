@@ -44,6 +44,10 @@ class Calculator
      */
     public function calculate(University $theChosenOne, Collection $examResults, Collection $extraPoints)
     {
+        if ($examResults->isEmpty()) {
+            throw new MissingExamException("Missing Exam(s)");
+        }
+
         // Search for missing required exam
         foreach (self::REQUIRED_EXAMS as $reqExam) {
             if ($examResults->doesntContain(function ($item) use ($reqExam) {
@@ -76,7 +80,6 @@ class Calculator
         });
 
         // Required exam
-
         if (!$requiredExam) {
             throw new MissingExamException("Missing the required exam for the university. No exam.");
         }
@@ -96,13 +99,14 @@ class Calculator
 
         $basePoint = ($requiredExam->result + $bestOptionalExam->result) * 2;
 
+        // Extra points for emelt exam
         $extraPoint = $examResults->sum(function ($item) {
             /** @var ExamResult $item */
             return $item->level == self::EXAM_LEVEL_EMELT ? 50 : 0;
         });
 
+        // Extra points for language skills
         $langExtra = [];
-
         foreach ($extraPoints as $extra) {
             /** @var ExtraPoint $extra */
             if (!isset($langExtra[$extra->lang])) {
@@ -123,6 +127,7 @@ class Calculator
             }
         });
 
+        // Maximizing the extra points
         if ($extraPoint > 100) {
             $extraPoint = 100;
         }
