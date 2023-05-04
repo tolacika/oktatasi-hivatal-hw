@@ -4,9 +4,9 @@ namespace Tolacika\OktatasiHivatalHw\models;
 
 class ExtraPoint
 {
-    private string $category;
-    private string $type;
-    private string $lang;
+    public string $category;
+    public string $type;
+    public string $lang;
 
     /**
      * @param string $category

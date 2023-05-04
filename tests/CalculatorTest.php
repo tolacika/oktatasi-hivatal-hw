@@ -44,4 +44,16 @@ class CalculatorTest extends TestCase
         $this->expectException(FailedExamException::class);
         $result = $calculator->calculate($data['uni'], $data['results'], $data['extras']);
     }
+
+    public function testDuplicateLanguageExam()
+    {
+
+        $data = ExampleDataParser::getExampleData('duplicated_extras');
+
+        $calculator = new Calculator();
+        $this->assertEquals(
+            $data['output'],
+            $calculator->calculate($data['uni'], $data['results'], $data['extras'])
+        );
+    }
 }

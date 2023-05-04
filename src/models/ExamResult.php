@@ -4,19 +4,19 @@ namespace Tolacika\OktatasiHivatalHw\models;
 
 class ExamResult
 {
-    private string $name;
-    private string $type;
-    private int $result;
+    public string $name;
+    public string $level;
+    public int $result;
 
     /**
      * @param string $name
-     * @param string $type
+     * @param string $level
      * @param int $result
      */
-    public function __construct(string $name, string $type, int $result)
+    public function __construct(string $name, string $level, int $result)
     {
         $this->name = $name;
-        $this->type = $type;
+        $this->level = $level;
         $this->result = $result;
     }
 
@@ -39,17 +39,17 @@ class ExamResult
     /**
      * @return string
      */
-    public function getType(): string
+    public function getLevel(): string
     {
-        return $this->type;
+        return $this->level;
     }
 
     /**
-     * @param string $type
+     * @param string $level
      */
-    public function setType(string $type): void
+    public function setLevel(string $level): void
     {
-        $this->type = $type;
+        $this->level = $level;
     }
 
     /**

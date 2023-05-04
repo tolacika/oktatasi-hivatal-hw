@@ -2,6 +2,7 @@
 
 namespace Tolacika\OktatasiHivatalHw\Tests\Data;
 
+use Illuminate\Support\Collection;
 use Tolacika\OktatasiHivatalHw\models\ExamResult;
 use Tolacika\OktatasiHivatalHw\models\ExtraPoint;
 use Tolacika\OktatasiHivatalHw\models\University;
@@ -17,15 +18,13 @@ class ExampleDataParser
         if (isset(self::$exampleData[$i])) {
             $example = self::$exampleData[$i];
 
-            $ret = [
-                'uni' => null,
-                'results' => [],
-                'extras' => [],
-                'output' => null,
-            ];
+            $uni = null;
+            $results = new Collection();
+            $extras = new Collection();
+            $output = null;
 
             if (isset($example['valasztott-szak'])) {
-                $ret['uni'] = new University(
+                $uni = new University(
                     $example['valasztott-szak']['egyetem'],
                     $example['valasztott-szak']['kar'],
                     $example['valasztott-szak']['szak']
@@ -34,21 +33,26 @@ class ExampleDataParser
 
             if (isset($example['erettsegi-eredmenyek'])) {
                 foreach ($example['erettsegi-eredmenyek'] as $result) {
-                    $ret['results'][] = new ExamResult($result['nev'], $result['tipus'], intval($result['eredmeny']));
+                    $results->push(new ExamResult($result['nev'], $result['tipus'], intval($result['eredmeny'])));
                 }
             }
 
             if (isset($example['tobbletpontok'])) {
                 foreach ($example['tobbletpontok'] as $extra) {
-                    $ret['extras'][] = new ExtraPoint($extra['kategoria'], $extra['tipus'], $extra['nyelv']);
+                    $extras->push(new ExtraPoint($extra['kategoria'], $extra['tipus'], $extra['nyelv']));
                 }
             }
 
             if (isset($example['output'])) {
-                $ret['output'] = $example['output'];
+                $output = $example['output'];
             }
 
-            return $ret;
+            return [
+                'uni' => $uni,
+                'results' => $results,
+                'extras' => $extras,
+                'output' => $output
+            ];
         } else {
             return null;
         }

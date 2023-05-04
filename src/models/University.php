@@ -2,11 +2,16 @@
 
 namespace Tolacika\OktatasiHivatalHw\models;
 
+use Tolacika\OktatasiHivatalHw\Calculator;
+
 class University
 {
-    private string $university;
-    private string $kar;
-    private string $szak;
+    public string $university;
+    public string $kar;
+    public string $szak;
+    public ?string $requiredExam;
+    public ?string $requiredLevel;
+    public ?array $optionalExams;
 
     /**
      * @param string $university
@@ -18,6 +23,31 @@ class University
         $this->university = $university;
         $this->kar = $kar;
         $this->szak = $szak;
+
+        // Todo: Az egyes egyetemi szakok szintén jöhetnének valami adatforrásból, pld db-ből, a saját feltétel rendszerével együtt.
+        if ($university == "ELTE") {
+            $this->requiredExam = Calculator::EXAM_MATEK;
+            $this->requiredLevel = Calculator::EXAM_LEVEL_KOZEP;
+
+            $this->optionalExams = [
+                Calculator::EXAM_BIOLOGIA,
+                Calculator::EXAM_FIZIKA,
+                Calculator::EXAM_INFORMATIKA,
+                Calculator::EXAM_KEMIA,
+            ];
+        } else/*if ($university == "PPKE") */ {
+            $this->requiredExam = Calculator::EXAM_ANGOL;
+            $this->requiredLevel = Calculator::EXAM_LEVEL_EMELT;
+
+            $this->optionalExams = [
+                Calculator::EXAM_FRANCIA,
+                Calculator::EXAM_NEMET,
+                Calculator::EXAM_OLASZ,
+                Calculator::EXAM_OROSZ,
+                Calculator::EXAM_SPANYOL,
+                Calculator::EXAM_TORTENELEM,
+            ];
+        }
     }
 
     /**

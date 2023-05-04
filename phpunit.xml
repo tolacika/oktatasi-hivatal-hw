@@ -4,4 +4,8 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <ini name="xdebug.remote_enable" value="1"/>
+        <ini name="xdebug.remote_autostart" value="1"/>
+    </php>
 </phpunit>
